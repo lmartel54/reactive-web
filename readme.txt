@@ -1,3 +1,8 @@
+
+
+Spring Boot WebFlux + Thymeleaf + AngularJS + Server-Sent Events (SSE) + R2DBC
+ 
+
 https://www.infoq.com/news/2017/12/servlet-reactive-stack/
 
 https://docs.spring.io/spring/docs/5.1.9.RELEASE/spring-framework-reference/web-reactive.html#webflux

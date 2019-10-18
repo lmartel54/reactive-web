@@ -1,0 +1,80 @@
+body {
+	font-size: 1.4rem;
+	background-color: #f3f3f3;
+}
+
+.layout-wrapper {
+	padding: 20px;
+}
+
+.table {
+	margin: 0px;
+}
+
+.table > tr {
+	margin: 0px;
+}
+
+.btn-group > .btn {
+	border-color: white;
+	border-radius: 5px;
+}
+
+.panel-heading {
+	background-color: aliceblue !important;
+	padding: 5px 10px 5px 10px;
+}
+
+.panel-body {
+	padding: 5px;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.table-hover > tbody > tr:hover > td {
+    cursor: pointer;
+}
+
+.selected {
+  background-color: lemonchiffon !important;
+}
+
+.data-detail-container {
+	height: 250px; 
+	overflow-y: scroll;
+}
+
+.data-detail-container .row {
+   	margin: 0px !important;
+}
+
+.data-detail-line {
+	margin-left: 20px !important;
+}
+
+.data-detail-header {
+	margin-left: 10px !important;
+}
+
+.critical-error {
+	color: red;
+	font-weight: bold;
+}
+
+/* Debug Mode  */
+
+.debug1 {
+	border: 1px solid #65c4ff !important;
+}
+
+.debug2 {
+	border: 1px solid #8C3D77 !important;
+	padding: 10px;
+}
+
+.debug3 {
+	border: 1px solid #F6AC0C !important;
+}
