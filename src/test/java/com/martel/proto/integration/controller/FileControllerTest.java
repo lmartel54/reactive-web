@@ -27,7 +27,7 @@ import reactor.test.StepVerifier;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class FileControllerTests {
+public class FileControllerTest {
 
 	@Autowired
 	private WebTestClient webTestClient;

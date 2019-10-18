@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.springframework.http.MediaType.*;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.FluxExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import com.martel.proto.category.IntegrationTests;
 import com.martel.proto.data.entity.Customer;
 import com.martel.proto.data.repository.CustomerRepository;
 
@@ -20,8 +22,9 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 @RunWith(SpringRunner.class)
+@Category(IntegrationTests.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CustomerControllerTests {
+public class CustomerControllerTest {
 
 	@Autowired
 	private CustomerRepository repo;

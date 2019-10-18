@@ -3,11 +3,13 @@ package com.martel.proto.unit.repository;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.martel.proto.category.UnitTests;
 import com.martel.proto.data.entity.Customer;
 import com.martel.proto.data.repository.CustomerRepository;
 
@@ -15,8 +17,9 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 @RunWith(SpringRunner.class)
+@Category(UnitTests.class)
 @SpringBootTest
-public class CustomerCrudRepositoryTests {
+public class CustomerCrudRepositoryTest {
 
 	@Autowired
 	private CustomerRepository repo;
