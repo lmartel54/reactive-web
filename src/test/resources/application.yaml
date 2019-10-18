@@ -1,0 +1,10 @@
+spring:
+   data:
+      r2dbc:
+         applicationName: postgresql-r2dbc
+         connectTimeout: 1000
+         database: atrium-test
+         host: localhost
+         port: 5432
+         username: admin
+         password: password
