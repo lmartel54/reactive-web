@@ -45,4 +45,22 @@ CREATE TABLE customer (
    AGE INT NOT NULL
 );
 
+create table invoices (
+   id  serial primary key,
+   reference varchar(50) not null,
+   day int not null,
+   month int not null,
+   year int not null,
+   amount decimal(7,2) not null,
+   tva decimal(3,1) not null,
+   path varchar(255) not null
+);
+
+create table invoices (
+   id  serial primary key,
+   reference varchar(50) not null
+);
+
+
+
 \dt

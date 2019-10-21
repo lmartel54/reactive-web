@@ -1,7 +1,5 @@
 package com.martel.proto.web;
 
-import java.time.Duration;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,32 +10,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.martel.proto.data.entity.Customer;
-import com.martel.proto.data.repository.CustomerRepository;
+import com.martel.proto.data.entity.Invoice;
+import com.martel.proto.data.repository.InvoiceRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping(value = "/api/customer", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-public class CustomerController {
+@RequestMapping(value = "/api/invoice", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+public class InvoiceController {
 
 	@Autowired
-	CustomerRepository repo;
+	InvoiceRepository repo;
 
 	@GetMapping("/id/{entityId}")
-	public Mono<Customer> find(@PathVariable Long entityId) {
+	public Mono<Invoice> find(@PathVariable Long entityId) {
 		return repo.findById(entityId);
 	}
 
 	@GetMapping("/all")
-	public Flux<Customer> findAll() {
-		return repo.findAll().delayElements(Duration.ofSeconds(1));
+	public Flux<Invoice> findAll() {
+		return repo.findAll();
 	}
 
 	@PostMapping(value = "/save")
-	public Mono<Customer> save(@RequestBody Customer customer) {
-		return repo.save(customer);
+	public Mono<Invoice> save(@RequestBody Invoice Invoice) {
+		return repo.save(Invoice);
 	}
 
 	@DeleteMapping(value = "/id/{entityId}")
