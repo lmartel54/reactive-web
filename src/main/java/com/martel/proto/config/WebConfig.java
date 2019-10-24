@@ -1,4 +1,4 @@
-package com.martel.proto.conf;
+package com.martel.proto.config;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

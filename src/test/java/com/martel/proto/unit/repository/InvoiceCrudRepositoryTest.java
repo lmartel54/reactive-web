@@ -1,5 +1,9 @@
 package com.martel.proto.unit.repository;
 
+import static org.junit.Assert.*;
+
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -8,9 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.martel.proto.category.UnitTests;
-import com.martel.proto.data.entity.Customer;
-import com.martel.proto.data.entity.Invoice;
-import com.martel.proto.data.repository.InvoiceRepository;
+import com.martel.proto.xxx.entity.Invoice;
+import com.martel.proto.xxx.repository.InvoiceCrudRepository;
 
 import reactor.test.StepVerifier;
 
@@ -20,116 +23,126 @@ import reactor.test.StepVerifier;
 public class InvoiceCrudRepositoryTest {
 
 	@Autowired
-	private InvoiceRepository repo;
+	private InvoiceCrudRepository invoiceCrudRepo;
 
-	private final Customer customer1 = new Customer("repo-customer1", 1);
+	@Test
+	public void find_Success() {
 
-	private final Invoice invoice1 = new Invoice(null, "SDO-250-2016-1000145398", 24, 1, 2016, 1145.10, 19.6, "\\dir");
+		final Invoice invoice = new Invoice("repo-invoice-find-UT", 1, 1, 2017, 1145.10, "\\dir1");
+		final Invoice expected = initContext(invoice);
 
-//	private final Customer customer2 = new Customer("repo-customer2", 2);
-//	private final Customer customer3 = new Customer("repo-customer3", 3);
+		StepVerifier.create(invoiceCrudRepo.findById(expected.getId()))
+						.assertNext(actual -> checkEntity(actual, expected))
+						.verifyComplete();
 
-//	@Test
-//	public void find_Success() {
-//
-//		final Customer expected = repo.save(customer1)
-//												.block();
-//
-//		StepVerifier.create(repo.findById(expected.getId()))
-//						.assertNext(actual -> check(actual, expected))
-//						.verifyComplete();
-//	}
-//
-//	@Test
-//	public void findAll_Success() {
-//
-//		// initialize context
-//		repo  .deleteAll()
-//				.block();
-//
-//		repo  .saveAll(Flux.just(customer1, customer2, customer3))
-//				.blockLast();
-//
-//		// validate function
-//		StepVerifier.create(repo.findAll())
-//						.assertNext(actual -> check(actual, customer1))
-//						.assertNext(actual -> check(actual, customer2))
-//						.assertNext(actual -> check(actual, customer3))
-//						.thenCancel()
-//						.verify();
-//	}
+		cleanContext(expected.getId());
+	}
+
+	@Test
+	public void findAll_Success() {
+
+		final Invoice invoice1 = new Invoice("repo-invoice1-findAll-UT", 1, 1, 2017, 1145.10, "\\dir1");
+		final Invoice expected1 = initContext(invoice1);
+
+		final Invoice invoice2 = new Invoice("repo-invoice2-findAll-UT", 2, 2, 2018, 12.1, "\\dir2");
+		final Invoice expected2 = initContext(invoice2);
+
+		StepVerifier.create(invoiceCrudRepo.findAll())
+						.assertNext(actual -> checkEntity(actual, invoice1))
+						.assertNext(actual -> checkEntity(actual, invoice2))
+						.thenCancel()
+						.verify();
+
+		cleanContext(expected1.getId());
+		cleanContext(expected2.getId());
+	}
 
 	@Test
 	public void insert_Success() {
 
-		// initialize context
-		final Invoice expected = repo .save(invoice1)
-												.block();
+		final Invoice invoice = new Invoice("repo-invoice-insert-UT", 1, 1, 2017, 1145.10, "\\dir1");
 
-		// validate function
-		StepVerifier.create(repo.findById(expected.getId()))
+		final Invoice expected = invoiceCrudRepo.save(invoice)
+														.block();
+
+		StepVerifier.create(invoiceCrudRepo.findById(expected.getId()))
 						.expectNextCount(1)
+						.verifyComplete();
+
+		cleanContext(expected.getId());
+	}
+
+	@Test
+	public void insert_WithAssignedId_Failed() {
+
+		final Invoice invoice = new Invoice("repo-invoice-insert-failed-UT", 4, 4, 2020, 1, "\\dir4");
+		invoice.setId(UUID.randomUUID());
+
+		final Invoice expected = initContext(invoice);
+
+		StepVerifier.create(invoiceCrudRepo.findById(expected.getId()))
+						.expectNextCount(0)
 						.verifyComplete();
 	}
 
-//	@Test
-//	public void insert_WithAssignedId_Failed() {
-//
-//		// initialize context
-//		final Customer customer = new Customer("repo-customer-failed", 99);
-//		customer.setId(Long.valueOf(1));
-//
-//		final Customer expected = repo.save(customer)
-//												.block();
-//
-//		// validate function
-//		StepVerifier.create(repo.findById(expected.getId()))
-//						.expectNextCount(0)
-//						.verifyComplete();
-//	}
-//
-//	@Test
-//	public void update_Success() {
-//
-//		// initialize context
-//		final Customer current = repo .save(customer1)
-//												.block();
-//
-//		current.setName("repo-customer-updated");
-//
-//		// validate function
-//		final Customer expected = repo.save(current)
-//												.block();
-//
-//		StepVerifier.create(repo.findById(expected.getId()))
-//						.assertNext(actual -> check(actual, expected))
-//						.verifyComplete();
-//	}
-//
-//	@Test
-//	public void delete_Success() {
-//
-//		// initialize context
-//		final Customer expected = repo.save(customer1)
-//												.block();
-//
-//		StepVerifier.create(repo.findById(expected.getId()))
-//						.expectNextCount(1)
-//						.verifyComplete();
-//
-//		// validate function
-//		repo  .delete(expected)
-//				.block();
-//
-//		StepVerifier.create(repo.findById(expected.getId()))
-//						.expectNextCount(0)
-//						.verifyComplete();
-//	}
-//
-//	private void check(final Customer expected, final Customer actual) {
-//		assertNotNull(actual.getId());
-//		assertEquals(expected.getId(), actual.getId());
-//		assertEquals(expected.getName(), actual.getName());
-//		assertEquals(expected.getAge(), actual.getAge());
-//	}
+	@Test
+	public void update_Success() {
+
+		final Invoice invoice = new Invoice("repo-invoice-update-UT", 1, 1, 2017, 1145.10, "\\dir1");
+		final Invoice initial = initContext(invoice);
+
+		initial.setReference("repo-invoice-updated");
+		final Invoice expected = invoiceCrudRepo.save(initial)
+														.block();
+
+		StepVerifier.create(invoiceCrudRepo.findById(expected.getId()))
+						.assertNext(actual -> checkEntity(actual, expected))
+						.verifyComplete();
+
+		cleanContext(expected.getId());
+	}
+
+	@Test
+	public void delete_Success() {
+
+		final Invoice invoice = new Invoice("repo-invoice-update-UT", 1, 1, 2017, 1145.10, "\\dir1");
+		final Invoice expected = initContext(invoice);
+
+		StepVerifier.create(invoiceCrudRepo.findById(expected.getId()))
+						.expectNextCount(1)
+						.verifyComplete();
+
+		invoiceCrudRepo .deleteById(expected.getId())
+						.block();
+
+		StepVerifier.create(invoiceCrudRepo.findById(expected.getId()))
+						.expectNextCount(0)
+						.verifyComplete();
+	}
+
+	private Invoice initContext(final Invoice invoice) {
+
+		return invoiceCrudRepo.save(invoice)
+								.block();
+
+	}
+
+	private void cleanContext(UUID... ids) {
+
+		for (UUID id : ids) {
+			invoiceCrudRepo .deleteById(id)
+							.block();
+		}
+	}
+
+	public static void checkEntity(final Invoice actual, final Invoice expected) {
+		assertNotNull(actual.getId());
+		assertEquals(expected.getId(), actual.getId());
+		assertEquals(expected.getReference(), actual.getReference());
+		assertEquals(expected.getDay(), actual.getDay());
+		assertEquals(expected.getMonth(), actual.getMonth());
+		assertEquals(expected.getYear(), actual.getYear());
+		assertTrue(expected.getAmount() == expected.getAmount());
+		assertEquals(expected.getFile(), expected.getFile());
+	}
 }

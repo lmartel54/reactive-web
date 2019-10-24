@@ -1,5 +1,7 @@
 package com.martel.proto.web;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.martel.proto.data.entity.Invoice;
-import com.martel.proto.data.repository.InvoiceRepository;
+import com.martel.proto.xxx.entity.Invoice;
+import com.martel.proto.xxx.repository.InvoiceCrudRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,10 +23,10 @@ import reactor.core.publisher.Mono;
 public class InvoiceController {
 
 	@Autowired
-	InvoiceRepository repo;
+	InvoiceCrudRepository repo;
 
 	@GetMapping("/id/{entityId}")
-	public Mono<Invoice> find(@PathVariable Long entityId) {
+	public Mono<Invoice> find(@PathVariable UUID entityId) {
 		return repo.findById(entityId);
 	}
 
@@ -39,7 +41,7 @@ public class InvoiceController {
 	}
 
 	@DeleteMapping(value = "/id/{entityId}")
-	public Mono<Void> delete(@PathVariable Long entityId) {
+	public Mono<Void> delete(@PathVariable UUID entityId) {
 		return repo.deleteById(entityId);
 	}
 }

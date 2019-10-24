@@ -1,4 +1,4 @@
-package com.martel.proto.conf;
+package com.martel.proto.config;
 
 import java.time.Duration;
 
@@ -13,7 +13,7 @@ import io.r2dbc.postgresql.PostgresqlConnectionFactory;
 import io.r2dbc.spi.ConnectionFactory;
 
 @Configuration
-@EnableR2dbcRepositories("com.martel.proto.data.repository")
+@EnableR2dbcRepositories("com.martel.proto.xxx.repository")
 public class DatabaseConfig extends AbstractR2dbcConfiguration {
 
 	@Value("${spring.data.r2dbc.applicationName}")
@@ -24,13 +24,12 @@ public class DatabaseConfig extends AbstractR2dbcConfiguration {
 
 	@Value("${spring.data.r2dbc.database}")
 	private String database;
-	
+
 	@Value("${spring.data.r2dbc.host}")
 	private String host;
 
 	@Value("${spring.data.r2dbc.port}")
-	private int    port;
-
+	private int port;
 
 	@Value("${spring.data.r2dbc.username}")
 	private String username;
@@ -58,7 +57,7 @@ public class DatabaseConfig extends AbstractR2dbcConfiguration {
 //											      .schema("atrium").
 //											      .sslMode(SSLMode.ALLOW)
 													.build());
-		
+
 //		PostgresqlConnectionConfiguration.builder()
 //		.applicationName("atrium-r2dbc")
 //		.connectTimeout(Duration.ofMillis(1000))
@@ -72,4 +71,57 @@ public class DatabaseConfig extends AbstractR2dbcConfiguration {
 ////      .sslMode(SSLMode.ALLOW)
 //		.build());
 	}
+
+//	@Bean
+//	@Override
+//	public R2dbcCustomConversions r2dbcCustomConversions() {
+//
+////		List<Converter<?, ?>> converters = new ArrayList<Converter<?, ?>>();
+////		converters.add(new UUIDReadConverter());
+////		converters.add(new UUIDWriteConverter());
+////
+//		Dialect dialect = getDialect(connectionFactory());
+//		StoreConversions storeConversions = StoreConversions.of(dialect.getSimpleTypeHolder());
+//
+//		return new R2dbcCustomConversions(storeConversions, List.of(new UUIDReadConverter()/* , new UUIDWriteConverter() */));
+//	}
+//
+//	@ReadingConverter
+//	public class UUIDReadConverter implements Converter<Row, ExpenseGasView> {
+//
+//		@Override
+//		public ExpenseGasView convert(Row source) {
+//			System.out.println("######################################");
+//			System.out.println("UUIDReadConverter.convert()");
+//			System.out.println("######################################");
+//			// TODO Auto-generated method stub
+//			return null;
+//		}
+
+//		@Override
+//		public UUID convert(String source) {
+//			final UUID result = UUID.fromString(source);
+//			System.out.println("UUIDReadConverter.convert() => " + result.toString());
+//			return result;
+//		}
+//	}
+
+//	@WritingConverter
+//	public class UUIDWriteConverter implements Converter<UUID, Integer> {
+//
+//		@Override
+//		public Integer convert(UUID source) {
+//			
+//			System.out.println("######################################");
+//			System.out.println("UUIDWriteConverter.convert()");
+//			System.out.println("######################################");
+//			return null;
+//		}
+//
+////		@Override
+////		public String convert(UUID source) {
+////			System.out.println("UUIDWriteConverter.convert() => " + source.toString());
+////			return source.toString();
+////		}
+//	}
 }

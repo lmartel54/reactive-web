@@ -14,8 +14,8 @@ import org.springframework.test.web.reactive.server.FluxExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.martel.proto.category.IntegrationTests;
-import com.martel.proto.data.entity.Customer;
-import com.martel.proto.data.repository.CustomerRepository;
+import com.martel.proto.xxx.entity.Customer;
+import com.martel.proto.xxx.repository.CustomerRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
