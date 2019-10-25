@@ -65,8 +65,8 @@ public class InvoiceGasViewRepositoryTest {
 						.thenCancel()
 						.verify();
 
-		cleanContext(expected1.getInvoiceId());
-		cleanContext(expected2.getInvoiceId());
+//		cleanContext(expected1.getInvoiceId());
+//		cleanContext(expected2.getInvoiceId());
 	}
 
 	private InvoiceGas initContext(final Invoice invoice, final InvoiceGas invoiceDetail) {

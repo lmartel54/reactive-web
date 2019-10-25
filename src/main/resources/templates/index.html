@@ -17,103 +17,69 @@
 	<div class="content-container-fluid layout-wrapper">
 
 		<div class="content-container">
-
+			
 			<div class="row">
-				<div class="col-lg-12" ng-controller="EntityService">
-				
-					 <uib-accordion>
-					 	<div uib-accordion-group class="panel-default" ng-init="status = {isOpen: true}" is-open="status.isOpen">
-					    	<uib-accordion-heading>
-					    		<div class="content-container-fluid">
-					    			<div class="row vertical-align">
-										<div class="col-lg-10">
-								        	<a>REJECT AREA</a>
-								        	<i class="pull-left fa fa-exclamation-triangle"></i>
-										</div>
-										<div class="col-lg-2">
-											<div class="btn-group">
-												<button type="button" class="btn btn-sm btn-primary" ng-click="$event.preventDefault(); $event.stopPropagation(); refresh();">
-							      					<i class="fa fa-refresh" aria-hidden="true"></i> Refresh
-							    				</button>
-												<button type="button" class="btn btn-sm btn-danger" ng-click="$event.preventDefault(); $event.stopPropagation(); drop();">
-							      					<i class="fa fa-trash" aria-hidden="true"></i> Delete
-							    				</button>
-							    			</div>										
-						    				<i class="fa pull-right" ng-class="{'fa-chevron-down': status.isOpen, 'fa-chevron-right': !status.isOpen}"></i>
-										</div>
-					    			</div>
-					    		</div>
-						    </uib-accordion-heading>
-						    <div class="content-container-fluid">
-						    	<div class="row">
-						    		<div class="col-lg-12">
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th class="text-left">Reference</th>
-													<th class="text-center">Date</th>
-													<th class="text-right">Montant</th>
-													<th class="text-right">TVA</th>
-													<th class="text-left">Source</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr ng-repeat="row in rows" ng-click="changeSelection($index)" ng-class="{selected: $index === selectedRow}">
-													<td class="text-left">{{row.reference}}</td>
-<!-- 													<td ng-if="['ReplicaUnexpectedException'].indexOf(error.category) >= 0" class="text-left critical-error" >{{error.category}}</td> -->
-<!-- 													<td ng-if="['ReplicaUnexpectedException'].indexOf(error.category) == -1" class="text-left">{{error.category}}</td> -->
-													<td class="text-center">{{row.day}}/{{row.month}}/{{row.year}}</td>
-													<td class="text-right">{{row.amount}}</td>
-													<td class="text-right">{{row.tva}}</td>
-													<td class="text-left">{{row.path}}</td>
-<!-- 													<td class="text-left">{{row.lastTmsMaj | date: 'yyyy-MM-dd HH:mm:ss.sss'}}</td> -->
-												</tr>
-											</tbody>
-										</table>
-						    		</div>
-<!-- 						    		<div class="col-lg-8"> -->
-<!-- 						    			<fieldset> -->
-<!-- 										    <legend>Detail</legend> -->
-<!-- 									    	<div class="content-container-fluid data-detail-container" ng-if="errorDetail"> -->
-<!-- 										    	<div class="row" ng-if="errorDetail.id"> -->
-<!-- 									    	   		<section> -->
-<!-- 										    			<aside class="data-detail-header"><label>id</label></aside> -->
-<!-- 										    			<aside class="data-detail-line">{{errorDetail.id}}</aside> -->
-<!-- 							    					</section> -->
-<!-- 										    	</div> -->
-<!-- 										    	<div class="row" ng-if="errorDetail.context && errorDetail.context.movement"> -->
-<!-- 										    		<section> -->
-<!-- 										    			<aside class="data-detail-header"><label>movement</label></aside> -->
-<!-- 										    			<aside class="data-detail-line">{{errorDetail.context.movement}}</aside> -->
-<!-- 							    					</section> -->
-<!-- 										    	</div> -->
-<!-- 										    	<div class="row" ng-if="errorDetail.context && errorDetail.context.boursoMovement"> -->
-<!-- 										    		<section> -->
-<!-- 										    			<aside class="data-detail-header"><label>bourso movement</label></aside> -->
-<!-- 										    			<aside class="data-detail-line">{{errorDetail.context.boursoMovement}}</aside> -->
-<!-- 							    					</section> -->
-<!-- 										    	</div> -->
-<!-- 										    	<div class="row" ng-if="errorDetail.context && errorDetail.context.boursoMovements"> -->
-<!-- 										    		<section> -->
-<!-- 										    			<aside class="data-detail-header"><label>bourso movements</label></aside> -->
-<!-- 										    			<aside class="data-detail-line">{{errorDetail.context.boursoMovements}}</aside> -->
-<!-- 							    					</section> -->
-<!-- 										    	</div> -->
-<!-- 										    	<div class="row" ng-if="errorDetail.error"> -->
-<!-- 										    		<section> -->
-<!-- 										    			<aside class="data-detail-header"><label>error</label></aside> -->
-<!-- 										    			<aside class="data-detail-line">{{errorDetail.error}}</aside> -->
-<!-- 							    					</section> -->
-<!-- 										    	</div> -->
-<!-- 											</div> -->
-<!-- 										</fieldset> -->
-<!-- 						    		</div> -->
-						    	</div>
-						    </div>
-					    </div>
-					 </uib-accordion>
+				<div class="col-lg-12" ng-controller="InvoiceGasController">
+					<div th:include="fragments/invoice :: invoice-gas"></div>
 				</div>
 			</div>
+
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-lg-12" ng-controller="EntityService"> -->
+				
+<!-- 					 <uib-accordion> -->
+<!-- 					 	<div uib-accordion-group class="panel-default" ng-init="status = {isOpen: true}" is-open="status.isOpen"> -->
+<!-- 					    	<uib-accordion-heading> -->
+<!-- 					    		<div class="content-container-fluid"> -->
+<!-- 					    			<div class="row vertical-align"> -->
+<!-- 										<div class="col-lg-10"> -->
+<!-- 								        	<a>REJECT AREA</a> -->
+<!-- 								        	<i class="pull-left fa fa-exclamation-triangle"></i> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-lg-2"> -->
+<!-- 											<div class="btn-group"> -->
+<!-- 												<button type="button" class="btn btn-sm btn-primary" ng-click="$event.preventDefault(); $event.stopPropagation(); refresh();"> -->
+<!-- 							      					<i class="fa fa-refresh" aria-hidden="true"></i> Refresh -->
+<!-- 							    				</button> -->
+<!-- 												<button type="button" class="btn btn-sm btn-danger" ng-click="$event.preventDefault(); $event.stopPropagation(); drop();"> -->
+<!-- 							      					<i class="fa fa-trash" aria-hidden="true"></i> Delete -->
+<!-- 							    				</button> -->
+<!-- 							    			</div>										 -->
+<!-- 						    				<i class="fa pull-right" ng-class="{'fa-chevron-down': status.isOpen, 'fa-chevron-right': !status.isOpen}"></i> -->
+<!-- 										</div> -->
+<!-- 					    			</div> -->
+<!-- 					    		</div> -->
+<!-- 						    </uib-accordion-heading> -->
+<!-- 						    <div class="content-container-fluid"> -->
+<!-- 						    	<div class="row"> -->
+<!-- 						    		<div class="col-lg-12"> -->
+<!-- 										<table class="table table-hover"> -->
+<!-- 											<thead> -->
+<!-- 												<tr> -->
+<!-- 													<th class="text-left">Reference</th> -->
+<!-- 													<th class="text-center">Date</th> -->
+<!-- 													<th class="text-right">Montant</th> -->
+<!-- 													<th class="text-right">TVA</th> -->
+<!-- 													<th class="text-left">Source</th> -->
+<!-- 												</tr> -->
+<!-- 											</thead> -->
+<!-- 											<tbody> -->
+<!-- 												<tr ng-repeat="row in rows" ng-click="changeSelection($index)" ng-class="{selected: $index === selectedRow}"> -->
+<!-- 													<td class="text-left">{{row.reference}}</td> -->
+<!-- 													<td class="text-center">{{row.day}}/{{row.month}}/{{row.year}}</td> -->
+<!-- 													<td class="text-right">{{row.amount}}</td> -->
+<!-- 													<td class="text-right">{{row.tva}}</td> -->
+<!-- 													<td class="text-left">{{row.path}}</td> -->
+<!-- 												</tr> -->
+<!-- 											</tbody> -->
+<!-- 										</table> -->
+<!-- 						    		</div> -->
+<!-- 						    	</div> -->
+<!-- 						    </div> -->
+<!-- 					    </div> -->
+<!-- 					 </uib-accordion> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 		</div>
 	</div>
 </body>

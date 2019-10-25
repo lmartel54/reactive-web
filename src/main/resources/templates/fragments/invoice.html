@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Invoice templates</title>
+</head>
+<body>
+	<th:block th:fragment="invoice-gas">
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th class="text-left">N° Facture</th>
+					<th class="text-center">Date</th>
+					<th class="text-right">Montant</th>
+					<th class="text-center">Fichier</th>
+					
+					<th class="text-center">Date Début</th>
+					<th class="text-center">Index Début</th>
+					<th class="text-center">Date Fin</th>
+					<th class="text-center">Index Fin</th>
+					<th class="text-center">Nbr jours</th>
+					<th class="text-center">Auto-relevé</th>
+					<th class="text-center">Volume (m3)</th>
+					<th class="text-center">Conso. (Kwh)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="invoice in invoices.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" ng-click="changeSelection($index)" ng-class="{selected: $index === selectedRow}">
+					<td class="text-left">{{invoice.reference}}</td>
+					<td class="text-center">{{invoice.day}}/{{invoice.month}}/{{invoice.year}}</td>
+					<td class="text-right">{{invoice.amount}} €</td>
+					<td class="text-center">{{invoice.file}}</td>
+					<td class="text-center">{{invoice.startPeriodDay}}/{{invoice.startPeriodMonth}}/{{invoice.startPeriodYear}}</td>
+					<td class="text-center">{{invoice.startPeriodIndex}}</td>
+					<td class="text-center">{{invoice.endPeriodDay}}/{{invoice.endPeriodMonth}}/{{invoice.endPeriodYear}}</td>
+					<td class="text-center">{{invoice.endPeriodIndex}}</td>
+					<td class="text-center">{{invoice.periodDuration}}</td>
+					<td class="text-center">{{invoice.autoReport}}</td>
+					<td class="text-center">{{invoice.volume}}</td>
+					<td class="text-center">{{invoice.consumption}}</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<pre>Page: {{currentPage}} / {{numPages}}</pre>
+		
+		<ul uib-pagination total-items="pagination.totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></ul>
+		
+<!-- 		<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination> -->
+
+<!-- 													<td ng-if="['ReplicaUnexpectedException'].indexOf(error.category) >= 0" class="text-left critical-error" >{{error.category}}</td> -->
+<!-- 													<td ng-if="['ReplicaUnexpectedException'].indexOf(error.category) == -1" class="text-left">{{error.category}}</td> -->
+
+	</th:block>
+</body>
+</html>
