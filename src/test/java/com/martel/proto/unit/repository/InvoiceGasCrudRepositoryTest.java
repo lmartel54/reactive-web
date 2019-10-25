@@ -25,19 +25,19 @@ import reactor.test.StepVerifier;
 public class InvoiceGasCrudRepositoryTest {
 
 	@Autowired
-	private InvoiceCrudRepository invoiceCrudRepo;
+	private InvoiceCrudRepository invoiceCrudRepository;
 
 	@Autowired
-	private InvoiceGasCrudRepository invoiceGasCrudRepo;
+	private InvoiceGasCrudRepository invoiceGasCrudRepository;
 
 	@Test
 	public void find_Success() {
 
-		final Invoice invoice = new Invoice("repo-invoice-gas-find-UT", 1, 1, 2017, 1145.10, "\\dir1");
+		final Invoice invoice = new Invoice("invoice-gas-find-UT", 1, 1, 2017, 1145.10, "\\dir1");
 		final InvoiceGas invoiceDetail = new InvoiceGas(1, 1, 2018, 0, 31, 12, 2018, 200, 365, true, 201, 301);
 		final InvoiceGas expected = initContext(invoice, invoiceDetail);
 
-		StepVerifier.create(invoiceGasCrudRepo.findById(invoiceDetail.getId()))
+		StepVerifier.create(invoiceGasCrudRepository.findById(invoiceDetail.getId()))
 						.assertNext(actual -> checkEntity(actual, expected))
 						.verifyComplete();
 
@@ -47,15 +47,15 @@ public class InvoiceGasCrudRepositoryTest {
 	@Test
 	public void findAll_Success() {
 
-		final Invoice invoice1 = new Invoice("repo-invoice1-gas-findAll-UT", 1, 1, 2017, 1145.10, "\\dir1");
+		final Invoice invoice1 = new Invoice("invoice1-gas-findAll-UT", 1, 1, 2017, 1145.10, "\\dir1");
 		final InvoiceGas invoiceDetail1 = new InvoiceGas(1, 1, 2018, 0, 31, 12, 2018, 200, 365, true, 201, 301);
 		final InvoiceGas expected1 = initContext(invoice1, invoiceDetail1);
 
-		final Invoice invoice2 = new Invoice("repo-invoice2-gas-findAll-UT", 2, 2, 2018, 12.1, "\\dir2");
+		final Invoice invoice2 = new Invoice("invoice2-gas-findAll-UT", 2, 2, 2018, 12.1, "\\dir2");
 		final InvoiceGas invoiceDetail2 = new InvoiceGas(1, 1, 2019, 201, 31, 12, 2019, 400, 365, true, 202, 302);
 		final InvoiceGas expected2 = initContext(invoice2, invoiceDetail2);
 
-		StepVerifier.create(invoiceGasCrudRepo.findAll())
+		StepVerifier.create(invoiceGasCrudRepository.findAll())
 						.assertNext(actual -> checkEntity(actual, expected1))
 						.assertNext(actual -> checkEntity(actual, expected2))
 						.thenCancel()
@@ -68,16 +68,11 @@ public class InvoiceGasCrudRepositoryTest {
 	@Test
 	public void insert_Success() {
 
-		final Invoice invoice = new Invoice("repo-invoice-gas-insert-UT", 1, 1, 2017, 1145.10, "\\dir1");
+		final Invoice invoice = new Invoice("invoice-gas-insert-UT", 1, 1, 2017, 1145.10, "\\dir1");
 		final InvoiceGas invoiceDetail = new InvoiceGas(1, 1, 2018, 0, 31, 12, 2018, 200, 365, true, 201, 301);
-		invoiceDetail.setInvoiceId(invoiceCrudRepo.save(invoice)
-																.block()
-																.getId());
+		final InvoiceGas expected = initContext(invoice, invoiceDetail);
 
-		final InvoiceGas expected = invoiceGasCrudRepo  .save(invoiceDetail)
-																		.block();
-
-		StepVerifier.create(invoiceGasCrudRepo.findById(expected.getId()))
+		StepVerifier.create(invoiceGasCrudRepository.findById(expected.getId()))
 						.expectNextCount(1)
 						.verifyComplete();
 
@@ -87,7 +82,7 @@ public class InvoiceGasCrudRepositoryTest {
 	@Test
 	public void update_Success() {
 
-		final Invoice invoice = new Invoice("repo-invoice-gas-update-UT", 1, 1, 2017, 1145.10, "\\dir1");
+		final Invoice invoice = new Invoice("invoice-gas-update-UT", 1, 1, 2017, 1145.10, "\\dir1");
 		final InvoiceGas invoiceDetail = new InvoiceGas(1, 1, 2018, 0, 31, 12, 2018, 200, 365, true, 201, 301);
 		final InvoiceGas current = initContext(invoice, invoiceDetail);
 
@@ -96,10 +91,10 @@ public class InvoiceGasCrudRepositoryTest {
 		current.setStartPeriodMonth(10);
 		current.setStartPeriodYear(2019);
 
-		final InvoiceGas expected = invoiceGasCrudRepo  .save(current)
+		final InvoiceGas expected = invoiceGasCrudRepository  .save(current)
 																		.block();
 
-		StepVerifier.create(invoiceGasCrudRepo.findById(expected.getId()))
+		StepVerifier.create(invoiceGasCrudRepository.findById(expected.getId()))
 						.assertNext(actual -> checkEntity(actual, expected))
 						.verifyComplete();
 
@@ -109,26 +104,26 @@ public class InvoiceGasCrudRepositoryTest {
 	@Test
 	public void delete_Success() {
 
-		final Invoice invoice = new Invoice("repo-invoice-gas-delete-UT", 1, 1, 2017, 1145.10, "\\dir1");
+		final Invoice invoice = new Invoice("invoice-gas-delete-UT", 1, 1, 2017, 1145.10, "\\dir1");
 		final InvoiceGas invoiceDetail = new InvoiceGas(1, 1, 2018, 0, 31, 12, 2018, 200, 365, true, 201, 301);
 		final InvoiceGas expected = initContext(invoice, invoiceDetail);
 
-		StepVerifier.create(invoiceGasCrudRepo.findById(expected.getId()))
+		StepVerifier.create(invoiceGasCrudRepository.findById(expected.getId()))
 						.expectNextCount(1)
 						.verifyComplete();
 
-		StepVerifier.create(invoiceCrudRepo.findById(expected.getInvoiceId()))
+		StepVerifier.create(invoiceCrudRepository.findById(expected.getInvoiceId()))
 						.expectNextCount(1)
 						.verifyComplete();
 
-		invoiceGasCrudRepo.deleteById(expected.getId())
+		invoiceGasCrudRepository.deleteById(expected.getId())
 								.block();
 
-		StepVerifier.create(invoiceGasCrudRepo.findById(expected.getId()))
+		StepVerifier.create(invoiceGasCrudRepository.findById(expected.getId()))
 						.expectNextCount(0)
 						.verifyComplete();
 
-		StepVerifier.create(invoiceCrudRepo.findById(expected.getInvoiceId()))
+		StepVerifier.create(invoiceCrudRepository.findById(expected.getInvoiceId()))
 						.expectNextCount(1)
 						.verifyComplete();
 
@@ -137,17 +132,17 @@ public class InvoiceGasCrudRepositoryTest {
 
 	private InvoiceGas initContext(final Invoice invoice, final InvoiceGas invoiceDetail) {
 
-		invoiceDetail.setInvoiceId(invoiceCrudRepo.save(invoice)
+		invoiceDetail.setInvoiceId(invoiceCrudRepository.save(invoice)
 																.block()
 																.getId());
 
-		return invoiceGasCrudRepo  .save(invoiceDetail)
+		return invoiceGasCrudRepository  .save(invoiceDetail)
 											.block();
 	}
 
 	private void cleanContext(UUID... ids) {
 		for (UUID id : ids) {
-			invoiceCrudRepo.deleteById(id)
+			invoiceCrudRepository.deleteById(id)
 								.block();
 		}
 	}

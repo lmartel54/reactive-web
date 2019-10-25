@@ -10,15 +10,17 @@ import com.martel.proto.xxx.entity.Invoice;
 import com.martel.proto.xxx.entity.InvoiceGas;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Table("admin.invoice_gas_view")
 public class InvoiceGasView {
 
 	/**
 	 * {@link Invoice}
 	 */
-	
+
 	@Column("ivx_reference")
 	private String reference;
 
@@ -40,7 +42,7 @@ public class InvoiceGasView {
 	/**
 	 * {@link InvoiceGas}
 	 */
-	
+
 	@Id
 	@Column("ivx_gas_id")
 	private UUID id;
@@ -83,4 +85,27 @@ public class InvoiceGasView {
 
 	@Column("ivx_gas_consumption")
 	private int consumption;
+
+	public InvoiceGasView(String reference, int day, int month, int year, double amount, String file, int startPeriodDay, int startPeriodMonth, int startPeriodYear, int startPeriodIndex,
+	int endPeriodDay, int endPeriodMonth, int endPeriodYear, int endPeriodIndex, int periodDuration, boolean autoReport, int volume, int consumption) {
+		super();
+		this.reference = reference;
+		this.day = day;
+		this.month = month;
+		this.year = year;
+		this.amount = amount;
+		this.file = file;
+		this.startPeriodDay = startPeriodDay;
+		this.startPeriodMonth = startPeriodMonth;
+		this.startPeriodYear = startPeriodYear;
+		this.startPeriodIndex = startPeriodIndex;
+		this.endPeriodDay = endPeriodDay;
+		this.endPeriodMonth = endPeriodMonth;
+		this.endPeriodYear = endPeriodYear;
+		this.endPeriodIndex = endPeriodIndex;
+		this.periodDuration = periodDuration;
+		this.autoReport = autoReport;
+		this.volume = volume;
+		this.consumption = consumption;
+	}
 }
