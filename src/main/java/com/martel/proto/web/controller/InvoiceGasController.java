@@ -1,4 +1,4 @@
-package com.martel.proto.xxx.web.controller;
+package com.martel.proto.web.controller;
 
 import java.util.UUID;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.martel.proto.xxx.entity.view.InvoiceGasView;
-import com.martel.proto.xxx.service.InvoiceGasService;
+import com.martel.proto.entity.view.InvoiceGasView;
+import com.martel.proto.service.InvoiceGasService;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

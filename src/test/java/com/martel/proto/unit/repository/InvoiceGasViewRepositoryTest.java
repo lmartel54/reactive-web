@@ -10,13 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.martel.proto.category.UnitTests;
-import com.martel.proto.xxx.entity.Invoice;
-import com.martel.proto.xxx.entity.InvoiceGas;
-import com.martel.proto.xxx.entity.converter.InvoiceGasViewConverter;
-import com.martel.proto.xxx.entity.view.InvoiceGasView;
-import com.martel.proto.xxx.repository.InvoiceCrudRepository;
-import com.martel.proto.xxx.repository.InvoiceGasCrudRepository;
-import com.martel.proto.xxx.repository.InvoiceGasViewRepository;
+import com.martel.proto.entity.Invoice;
+import com.martel.proto.entity.InvoiceGas;
+import com.martel.proto.entity.converter.InvoiceGasViewConverter;
+import com.martel.proto.entity.view.InvoiceGasView;
+import com.martel.proto.repository.InvoiceCrudRepository;
+import com.martel.proto.repository.InvoiceGasCrudRepository;
+import com.martel.proto.repository.InvoiceGasViewRepository;
 
 import reactor.test.StepVerifier;
 

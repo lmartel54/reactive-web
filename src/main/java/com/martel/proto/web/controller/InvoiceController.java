@@ -1,4 +1,4 @@
-package com.martel.proto.xxx.web.controller;
+package com.martel.proto.web.controller;
 
 import java.util.UUID;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.martel.proto.xxx.service.InvoiceService;
+import com.martel.proto.service.InvoiceService;
 
 import reactor.core.publisher.Mono;
 

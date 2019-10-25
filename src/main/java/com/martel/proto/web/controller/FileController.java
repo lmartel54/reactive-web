@@ -1,4 +1,4 @@
-package com.martel.proto.web;
+package com.martel.proto.web.controller;
 
 import java.io.IOException;
 import java.nio.file.Files;

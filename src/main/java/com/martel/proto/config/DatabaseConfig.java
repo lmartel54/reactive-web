@@ -13,7 +13,7 @@ import io.r2dbc.postgresql.PostgresqlConnectionFactory;
 import io.r2dbc.spi.ConnectionFactory;
 
 @Configuration
-@EnableR2dbcRepositories("com.martel.proto.xxx.repository")
+@EnableR2dbcRepositories("com.martel.proto.repository")
 public class DatabaseConfig extends AbstractR2dbcConfiguration {
 
 	@Value("${spring.data.r2dbc.applicationName}")

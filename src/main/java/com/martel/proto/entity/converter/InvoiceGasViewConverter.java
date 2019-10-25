@@ -1,8 +1,8 @@
-package com.martel.proto.xxx.entity.converter;
+package com.martel.proto.entity.converter;
 
-import com.martel.proto.xxx.entity.Invoice;
-import com.martel.proto.xxx.entity.InvoiceGas;
-import com.martel.proto.xxx.entity.view.InvoiceGasView;
+import com.martel.proto.entity.Invoice;
+import com.martel.proto.entity.InvoiceGas;
+import com.martel.proto.entity.view.InvoiceGasView;
 
 public class InvoiceGasViewConverter {
 

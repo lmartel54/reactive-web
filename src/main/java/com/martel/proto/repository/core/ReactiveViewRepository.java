@@ -1,4 +1,4 @@
-package com.martel.proto.xxx.repository.core;
+package com.martel.proto.repository.core;
 
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;

@@ -1,17 +1,17 @@
-package com.martel.proto.xxx.service.impl;
+package com.martel.proto.service.impl;
 
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.martel.proto.xxx.entity.InvoiceGas;
-import com.martel.proto.xxx.entity.converter.InvoiceGasViewConverter;
-import com.martel.proto.xxx.entity.view.InvoiceGasView;
-import com.martel.proto.xxx.repository.InvoiceGasCrudRepository;
-import com.martel.proto.xxx.repository.InvoiceGasViewRepository;
-import com.martel.proto.xxx.service.InvoiceGasService;
-import com.martel.proto.xxx.service.InvoiceService;
+import com.martel.proto.entity.InvoiceGas;
+import com.martel.proto.entity.converter.InvoiceGasViewConverter;
+import com.martel.proto.entity.view.InvoiceGasView;
+import com.martel.proto.repository.InvoiceGasCrudRepository;
+import com.martel.proto.repository.InvoiceGasViewRepository;
+import com.martel.proto.service.InvoiceGasService;
+import com.martel.proto.service.InvoiceService;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

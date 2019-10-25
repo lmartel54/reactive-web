@@ -1,13 +1,13 @@
-package com.martel.proto.xxx.service.impl;
+package com.martel.proto.service.impl;
 
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.martel.proto.xxx.entity.Invoice;
-import com.martel.proto.xxx.repository.InvoiceCrudRepository;
-import com.martel.proto.xxx.service.InvoiceService;
+import com.martel.proto.entity.Invoice;
+import com.martel.proto.repository.InvoiceCrudRepository;
+import com.martel.proto.service.InvoiceService;
 
 import reactor.core.publisher.Mono;
 

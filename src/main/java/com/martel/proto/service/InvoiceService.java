@@ -1,8 +1,8 @@
-package com.martel.proto.xxx.service;
+package com.martel.proto.service;
 
 import java.util.UUID;
 
-import com.martel.proto.xxx.entity.Invoice;
+import com.martel.proto.entity.Invoice;
 
 import reactor.core.publisher.Mono;
 

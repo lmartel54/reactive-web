@@ -1,4 +1,4 @@
-package com.martel.proto.xxx.entity;
+package com.martel.proto.entity;
 
 import java.util.UUID;
 

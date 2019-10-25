@@ -1,4 +1,4 @@
-package com.martel.proto.web;
+package com.martel.proto.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

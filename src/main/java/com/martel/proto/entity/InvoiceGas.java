@@ -1,4 +1,4 @@
-package com.martel.proto.xxx.entity.view;
+package com.martel.proto.entity;
 
 import java.util.UUID;
 
@@ -6,42 +6,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import com.martel.proto.xxx.entity.Invoice;
-import com.martel.proto.xxx.entity.InvoiceGas;
-
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@Table("admin.invoice_gas_view")
-public class InvoiceGasView {
-
-	/**
-	 * {@link Invoice}
-	 */
-
-	@Column("ivx_reference")
-	private String reference;
-
-	@Column("ivx_day")
-	private int day;
-
-	@Column("ivx_month")
-	private int month;
-
-	@Column("ivx_year")
-	private int year;
-
-	@Column("ivx_amount")
-	private double amount;
-
-	@Column("ivx_file")
-	private String file;
-
-	/**
-	 * {@link InvoiceGas}
-	 */
+@Table("admin.invoice_gas")
+public class InvoiceGas {
 
 	@Id
 	@Column("ivx_gas_id")
@@ -86,15 +55,9 @@ public class InvoiceGasView {
 	@Column("ivx_gas_consumption")
 	private int consumption;
 
-	public InvoiceGasView(String reference, int day, int month, int year, double amount, String file, int startPeriodDay, int startPeriodMonth, int startPeriodYear, int startPeriodIndex,
-	int endPeriodDay, int endPeriodMonth, int endPeriodYear, int endPeriodIndex, int periodDuration, boolean autoReport, int volume, int consumption) {
+	public InvoiceGas(int startPeriodDay, int startPeriodMonth, int startPeriodYear, int startPeriodIndex, int endPeriodDay, int endPeriodMonth, int endPeriodYear, int endPeriodIndex,
+	int periodDuration, boolean autoReport, int volume, int consumption) {
 		super();
-		this.reference = reference;
-		this.day = day;
-		this.month = month;
-		this.year = year;
-		this.amount = amount;
-		this.file = file;
 		this.startPeriodDay = startPeriodDay;
 		this.startPeriodMonth = startPeriodMonth;
 		this.startPeriodYear = startPeriodYear;

@@ -12,8 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.martel.proto.category.UnitTests;
-import com.martel.proto.xxx.entity.Invoice;
-import com.martel.proto.xxx.repository.InvoiceCrudRepository;
+import com.martel.proto.entity.Invoice;
+import com.martel.proto.repository.InvoiceCrudRepository;
 
 import reactor.test.StepVerifier;
 

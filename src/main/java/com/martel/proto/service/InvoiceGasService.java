@@ -1,8 +1,8 @@
-package com.martel.proto.xxx.service;
+package com.martel.proto.service;
 
 import java.util.UUID;
 
-import com.martel.proto.xxx.entity.view.InvoiceGasView;
+import com.martel.proto.entity.view.InvoiceGasView;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

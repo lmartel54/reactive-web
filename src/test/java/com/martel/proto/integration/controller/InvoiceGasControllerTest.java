@@ -16,12 +16,12 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.martel.proto.category.IntegrationTests;
 import com.martel.proto.unit.service.InvoiceGasServiceTest;
-import com.martel.proto.xxx.entity.Invoice;
-import com.martel.proto.xxx.entity.InvoiceGas;
-import com.martel.proto.xxx.entity.converter.InvoiceGasViewConverter;
-import com.martel.proto.xxx.entity.view.InvoiceGasView;
-import com.martel.proto.xxx.service.InvoiceGasService;
-import com.martel.proto.xxx.service.InvoiceService;
+import com.martel.proto.entity.Invoice;
+import com.martel.proto.entity.InvoiceGas;
+import com.martel.proto.entity.converter.InvoiceGasViewConverter;
+import com.martel.proto.entity.view.InvoiceGasView;
+import com.martel.proto.service.InvoiceGasService;
+import com.martel.proto.service.InvoiceService;
 
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
